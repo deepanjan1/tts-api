@@ -9,6 +9,22 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
+// importing redux packages
+import { Provider, connect } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import reduxThunk from 'redux-thunk';
+
+// Screen
+// import ArticleView from './src/tabs/ArticleView'
+import TabNavigator from './src/navigators/AppNavigator'
+
+// Creating store for redux
+// const store = createStore(
+//   rootReducer,
+//   applyMiddleware(reduxThunk));
+
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -16,16 +32,12 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+    // <Text style={styles.welcome}>Welcome to React Native!</Text>
+    // <Text style={styles.instructions}>To get started, edit App.js</Text>
+    // <Text style={styles.instructions}>{instructions}</Text>
+    return <TabNavigator />;
   }
 }
 
