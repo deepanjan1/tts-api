@@ -10,31 +10,27 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 // importing redux packages
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
+import rootReducer from './src/reducers/rootReducer';
 
-// Screen
-// import ArticleView from './src/tabs/ArticleView'
+// TabNavigator
 import TabNavigator from './src/navigators/AppNavigator'
 
 // Creating store for redux
-// const store = createStore(
-//   rootReducer,
-//   applyMiddleware(reduxThunk));
-
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const store = createStore(
+  rootReducer,
+  applyMiddleware(reduxThunk));
 
 export default class App extends React.Component {
   render() {
-    return <TabNavigator />;
+    return (
+      <Provider store = {store}>
+        <TabNavigator />
+      </Provider>
+    );
   }
 }
 

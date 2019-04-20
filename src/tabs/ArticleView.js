@@ -11,57 +11,22 @@ import { SearchBar } from 'react-native-elements'; // Search bar
 
 import Track from '../components/Track'; // Import track component
 
-export default class ArticleView extends React.Component {
+// redux imports
+import * as Action from '../actions/actions';
+import { connect } from 'react-redux';
+
+class ArticleView extends React.Component {
+  constructor(props) {
+    super(props);
+  };
+
+  componentDidMount = () => {
+    this.unsubscribeCurrentUserListener = this.props.trackListData();
+  };
+
   // adding a dummy state
   state = {
     search: '',
-    listData: [
-      {
-        key: 'Article 1',
-        percent: 0.4,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 2',
-        percent: 0.4,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 3',
-        percent: 0.4,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 4',
-        percent: 0.4,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 5',
-        percent: 0.4,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 6',
-        percent: 0.4,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 7',
-        percent: 0.4,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 8',
-        percent: 0.7,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-      {
-        key: 'Article 9',
-        percent: 0.7,
-        image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
-      },
-    ],
   };
 
   updateSearch = search => {
@@ -70,6 +35,7 @@ export default class ArticleView extends React.Component {
 
   render () {
     const { search } = this.state;
+    const { tracks } = this.props;
     return (
       <View style={ styles.container }>
         <SafeAreaView>
@@ -86,7 +52,7 @@ export default class ArticleView extends React.Component {
         </View>
         <View style={ styles.horizontalRule } />
         <FlatList
-          data={ this.state.listData }
+          data={ tracks }
           renderItem={({ item }) =>
             <Track track = { item } />
           }
@@ -112,3 +78,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
 });
+
+mapStateToProps = (state) => (
+  {
+    tracks: state.tracks.tracks,
+    activeTrack: state.tracks.activeTrack,
+  }
+);
+
+mapDispatchToProps = (dispatch) => (
+  ({
+    trackListData: () => {
+      dispatch(Action.trackListData());
+    },
+  })
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleView);
