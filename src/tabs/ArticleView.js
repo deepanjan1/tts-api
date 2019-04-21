@@ -5,11 +5,14 @@ import {
   View,
   FlatList,
   Image,
+  Button,
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation'; // ensures title is below notch
 import { SearchBar } from 'react-native-elements'; // Search bar
 
 import Track from '../components/Track'; // Import track component
+
+import { authorizePocket } from '../utilities/pocketAuth.js'; // Import pocket auth function
 
 // redux imports
 import * as Action from '../actions/actions';
@@ -41,6 +44,10 @@ class ArticleView extends React.Component {
       <View style={ styles.container }>
         <SafeAreaView>
           <Text style={{ textAlign: 'center', marginBottom: 5, }}>Home</Text>
+          <Button
+            onPress={ () => authorizePocket() }
+            title='Login'
+          />
         </SafeAreaView>
         <View>
           <SearchBar

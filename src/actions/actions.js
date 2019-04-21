@@ -59,13 +59,12 @@ const listData = [
   },
 ];
 
+// function to make API call and pull track data
 export const trackListData = () => (dispatch) =>
   {
     fetch('http://localhost:5000/tracks').then(
       (response) => response.json())
       .then((res) => dispatch(loadTracks(res)));
-
-    // dispatch(loadTracks(response.json()));
   };
 
 export const loadTracks = (tracks) => (dispatch) => (
