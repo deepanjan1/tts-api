@@ -36,6 +36,7 @@ class ArticleView extends React.Component {
   render () {
     const { search } = this.state;
     const { tracks } = this.props;
+    console.log(tracks);
     return (
       <View style={ styles.container }>
         <SafeAreaView>

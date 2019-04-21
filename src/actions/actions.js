@@ -59,7 +59,14 @@ const listData = [
   },
 ];
 
-export const trackListData = () => (dispatch) => dispatch(loadTracks(listData));
+export const trackListData = () => (dispatch) =>
+  {
+    fetch('http://localhost:5000/tracks').then(
+      (response) => response.json())
+      .then((res) => dispatch(loadTracks(res)));
+
+    // dispatch(loadTracks(response.json()));
+  };
 
 export const loadTracks = (tracks) => (dispatch) => (
   dispatch({
