@@ -15,8 +15,10 @@ const getPermissions = () => {
   .then((response) => response.text())
   .then((res) => res.replace('code=', 'request_token='))
   .then((requestToken) => {
-    const issuerAccess = 'https://getpocket.com/v3/oauth/authorize?';
-    const redirectUri = 'redirect_uri=' + 'TextToSpeech://';
+    console.log({ requestToken });
+
+    // Access token URL construction
+    const issuerAccess = 'https://getpocket.com/oauth/authorize?';
     const urlStringAccess = issuerAccess + requestToken + '&' + redirectUri;
     return fetch(urlStringAccess);
   })

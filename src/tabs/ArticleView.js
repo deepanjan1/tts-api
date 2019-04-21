@@ -18,6 +18,8 @@ import { authorizePocket } from '../utilities/pocketAuth.js'; // Import pocket a
 import * as Action from '../actions/actions';
 import { connect } from 'react-redux';
 
+import { WebView } from 'react-native-webview';
+
 class ArticleView extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +47,11 @@ class ArticleView extends React.Component {
         <SafeAreaView>
           <Text style={{ textAlign: 'center', marginBottom: 5, }}>Home</Text>
           <Button
-            onPress={ () => authorizePocket() }
+            onPress={ () => {
+              var dom = authorizePocket();
+              return (<WebView source={{ dom }} />);
+            }
+          }
             title='Login'
           />
         </SafeAreaView>
