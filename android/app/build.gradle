@@ -139,7 +139,6 @@ android {
 
 dependencies {
     implementation project(':react-native-webview')
-    implementation project(':react-native-app-auth')
     implementation project(':react-native-vector-icons')
     implementation project(':appcenter-crashes')
     implementation project(':appcenter-analytics')

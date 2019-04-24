@@ -13,13 +13,13 @@ const getPermissions = () => {
   // fetch response
   fetch(urlString)
   .then((response) => response.text())
-  .then((res) => res.replace('code=', 'request_token='))
+  .then((res) => res)
   .then((requestToken) => {
     console.log({ requestToken });
 
     // Access token URL construction
-    const issuerAccess = 'https://getpocket.com/oauth/authorize?';
-    const urlStringAccess = issuerAccess + requestToken + '&' + redirectUri;
+    const issuerAccess = 'https://getpocket.com/v3/oauth/authorize?';
+    const urlStringAccess = issuerAccess + requestToken + '&' + consumerKey;
     return fetch(urlStringAccess);
   })
   .then((responseAccess) => responseAccess.text())
