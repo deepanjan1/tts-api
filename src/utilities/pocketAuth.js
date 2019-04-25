@@ -1,8 +1,9 @@
 // Grabs access token and saves it to state
 
-import { POCKET_KEY } from '../../globalVariables.js';
+import { Linking } from 'react-native';
+import { POCKET_KEY } from '../../config.js';
 
-const redirectUri = 'redirect_uri=' + 'TextToSpeech://';
+const redirectUri = 'redirect_uri=' + 'TextToSpeech://authorizationFinished';
 
 const getPermissions = () => {
   // Request token URL construction
@@ -14,18 +15,29 @@ const getPermissions = () => {
   fetch(urlString)
   .then((response) => response.text())
   .then((res) => res)
-  .then((requestToken) => {
+  .then(async (requestToken) => {
     console.log({ requestToken });
 
-    // Access token URL construction
-    const issuerAccess = 'https://getpocket.com/v3/oauth/authorize?';
-    const urlStringAccess = issuerAccess + requestToken + '&' + consumerKey;
-    return fetch(urlStringAccess);
-  })
-  .then((responseAccess) => responseAccess.text())
-  .then((resA) => resA)
-  .catch((error) => {
-    console.error(error);});
+    // authorize request token
+    const requestAuth = 'https://getpocket.com/auth/authorize?';
+    const urlStringAccess = requestAuth +
+    requestToken.replace('code=', 'request_token=') + '&' + redirectUri;
+    Linking.openURL(urlStringAccess)
+    Linking.addEventListener('url', (responseUrl) => {
+      console.log(responseUrl);
+    });
+    // console.log({response});
+    return requestToken ;
+  });
+  // .then((response) => {
+  //   // Access token URL construction
+  //   const issuerAccess = 'https://getpocket.com/v3/oauth/authorize?';
+  //   const urlStringAccess = issuerAccess + response + '&' + consumerKey;
+  //   return fetch(urlStringAccess);
+  // })
+  // .then((resA) => console.log(resA))
+  // .catch((error) => {
+  //   console.error(error);});
 };
 
 // const getAccessToken = (requestToken) => {

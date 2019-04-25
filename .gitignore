@@ -60,4 +60,4 @@ server/env
 
 # Pocket Auth Information
 server/config.py
-globalVariables.js
+config.js
