@@ -8,9 +8,9 @@ const Track = (props) => (
     <View style={{ flexDirection: 'row', marginBottom: 5 }}>
       <Image
         style={{ width: 50, height: 50 }}
-        source={{ uri: props.track.image, }}
+        source={{ uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png', }} //props.track.image, 
         />
-      <Text style={styles.track}>{props.track.key}</Text>
+      <Text style={styles.track}>{props.track.title}</Text>
     </View>
     <Progress.Bar progress={props.track.percent} width={200} />
   </View>

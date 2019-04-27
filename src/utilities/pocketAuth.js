@@ -1,7 +1,7 @@
 // Grabs access token and saves it to state
 
 import { Linking } from 'react-native';
-import { POCKET_KEY } from '../../config.js';
+import { POCKET_KEY } from '../../config';
 
 const redirectUri = 'redirect_uri=' + 'TextToSpeech://authorizationFinished';
 
@@ -22,13 +22,14 @@ const getPermissions = () => {
     const requestAuth = 'https://getpocket.com/auth/authorize?';
     const urlStringAccess = requestAuth +
     requestToken.replace('code=', 'request_token=') + '&' + redirectUri;
-    Linking.openURL(urlStringAccess)
+    Linking.openURL(urlStringAccess);
     Linking.addEventListener('url', (responseUrl) => {
       console.log(responseUrl);
     });
+
     // console.log({response});
-    return requestToken ;
-  });
+    return requestToken;
+  })
   .then((response) => {
     // Access token URL construction
     const issuerAccess = 'https://getpocket.com/v3/oauth/authorize?';
