@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, jsonify, url_for
 from load_articles import loadArticles
-from config.py import POCKET_KEY, ACCESS_TOKEN
+from config import POCKET_KEY, ACCESS_TOKEN
 
 app = Flask(__name__)
 
