@@ -29,15 +29,15 @@ const getPermissions = () => {
     // console.log({response});
     return requestToken ;
   });
-  // .then((response) => {
-  //   // Access token URL construction
-  //   const issuerAccess = 'https://getpocket.com/v3/oauth/authorize?';
-  //   const urlStringAccess = issuerAccess + response + '&' + consumerKey;
-  //   return fetch(urlStringAccess);
-  // })
-  // .then((resA) => console.log(resA))
-  // .catch((error) => {
-  //   console.error(error);});
+  .then((response) => {
+    // Access token URL construction
+    const issuerAccess = 'https://getpocket.com/v3/oauth/authorize?';
+    const urlStringAccess = issuerAccess + response + '&' + consumerKey;
+    return fetch(urlStringAccess);
+  })
+  .then((resA) => console.log(resA))
+  .catch((error) => {
+    console.error(error);});
 };
 
 // const getAccessToken = (requestToken) => {
