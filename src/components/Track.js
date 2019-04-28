@@ -8,7 +8,7 @@ const Track = (props) => (
     <View style={{ flexDirection: 'row', marginBottom: 5 }}>
       <Image
         style={{ width: 50, height: 50 }}
-        source={{ uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png', }} //props.track.image, 
+        source={{ uri: props.track.image, }}
         />
       <Text style={styles.track}>{props.track.title}</Text>
     </View>

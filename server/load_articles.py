@@ -22,13 +22,49 @@ def loadArticles():
     articles_json_raw = json.loads(response.text)
 
     articles_json = []
-    for article in articles_json_raw['list']:
-        article_json = {
-        'title': articles_json_raw['list'][article]['resolved_title'],
-        'percent': 0.2,
-        # 'image': articles_json_raw['list'][article]['top_image_url'] if articles_json_raw['list'][article]['top_image_url'] is not None else False,
-        }
-        articles_json.append(article_json)
+    for key in articles_json_raw['list']:
+        articleObject = articles_json_raw['list'][key]
+        # print (articleObject)
+        if readableArticleValidator(articleObject):
+            # article_json = {
+            # 'title': articleObject['resolved_title'],
+            # 'percent': 0.2,
+            # 'key': key,
+            # 'image': articles_json_raw['list'][key]['top_image_url'],
+            # }
+            article_json = articleObjectCreator(articleObject, key)
+            articles_json.append(article_json)
 
-    print (articles_json)
+    # print (articles_json)
+    # print (articles_json_raw['list'])
     return (jsonify(articles_json))
+
+def readableArticleValidator(articleObject):
+    '''ensures the article has content to read'''
+    if articleObject['word_count'] != '0':
+        return True
+    else:
+        return False
+
+def articleObjectCreator(articleObject, key):
+    '''checks for whether the article has an
+    image and title and creates object'''
+    if articleObject['resolved_title'] != '':
+        title = articleObject['resolved_title']
+    else:
+        title = articleObject['given_title']
+
+    if 'top_image_url' in articleObject:
+        # print(articleObject['top_image_url'])
+        image = articleObject['top_image_url']
+    else:
+        image = requests.get('https://ui-avatars.com/api/', {'name': title}).url
+
+    article_json = {
+    'title': title,
+    'percent': 0.2,
+    'key': key,
+    'image': image,
+    }
+
+    return article_json

@@ -70,6 +70,7 @@ class ArticleView extends React.Component {
           renderItem={({ item }) =>
             <Track track = { item } />
           }
+          keyExtractor={ item => item.key }
         />
       </View>
     );
