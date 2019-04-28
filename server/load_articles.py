@@ -9,7 +9,7 @@ import json
 
 # function that loads articles
 def loadArticles():
-    '''function calls all articles from Pocket'''
+    '''function calls all articles from Pocket; this function is exported'''
     parameters = {
     'access_token': ACCESS_TOKEN,
     'consumer_key': POCKET_KEY,
@@ -39,6 +39,8 @@ def loadArticles():
     # print (articles_json_raw['list'])
     return (jsonify(articles_json))
 
+## Helper functions to not be exported ##
+
 def readableArticleValidator(articleObject):
     '''ensures the article has content to read'''
     if articleObject['word_count'] != '0':
@@ -54,8 +56,8 @@ def articleObjectCreator(articleObject, key):
     else:
         title = articleObject['given_title']
 
+    # if image is not present, it pulls an image from ui-avatars API
     if 'top_image_url' in articleObject:
-        # print(articleObject['top_image_url'])
         image = articleObject['top_image_url']
     else:
         image = requests.get('https://ui-avatars.com/api/', {'name': title}).url
