@@ -41,10 +41,9 @@ class ArticleView extends React.Component {
   render () {
     const { search } = this.state;
     const { tracks } = this.props;
-    console.log(tracks);
     return (
-      <View style={ styles.container }>
-        <SafeAreaView>
+      <SafeAreaView style={ styles.container }>
+      <View>
           <Text style={{ textAlign: 'center', marginBottom: 5, }}>Home</Text>
           <Button
             onPress={ () => {
@@ -54,7 +53,6 @@ class ArticleView extends React.Component {
           }
             title='Login'
           />
-        </SafeAreaView>
         <View>
           <SearchBar
             placeholder="Type Here..."
@@ -73,6 +71,7 @@ class ArticleView extends React.Component {
           keyExtractor={ item => item.key }
         />
       </View>
+      </SafeAreaView>
     );
   }
 }
