@@ -3,15 +3,15 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import * as Progress from 'react-native-progress';  // Progress bar
 import PropTypes from 'prop-types';
 
-const PlaybackControls = () => (
+const PlaybackControl = (props) => (
   <View style = { styles.container }>
-    <Text>Not Playing Anything</Text>
+    <Text>{ props.playTrack }</Text>
   </View>
 );
 
-// PlaybackControls.propTypes = {
-//
-// };
+PlaybackControl.propTypes = {
+  playTrack: PropTypes.string.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlaybackControls;
+export default PlaybackControl;

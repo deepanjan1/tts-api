@@ -5,17 +5,24 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation'; // ensures title is below notch
 
-// TabNavigator
+// Main screens loaded in
 import TabNavigator from '../navigators/AppNavigator';
-
 import PlaybackControl from '../components/PlaybackControl';
 
+// redux imports
+import * as Action from '../actions/actions';
+import { connect } from 'react-redux';
+
 class MainScreen extends React.Component {
+  constructor(props) {
+    super(props);
+  };
+
   render() {
     return (
       <SafeAreaView style={ styles.container }>
         <TabNavigator />
-        <PlaybackControl />
+        <PlaybackControl playTrack={ this.props.activeTrack }/>
       </SafeAreaView>
     );
   }
@@ -32,4 +39,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainScreen;
+mapStateToProps = (state) => (
+  {
+    activeTrack: state.tracks.activeTrack,
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

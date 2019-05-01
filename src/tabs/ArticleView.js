@@ -40,37 +40,37 @@ class ArticleView extends React.Component {
 
   render () {
     const { search } = this.state;
-    const { tracks } = this.props;
+    const { tracks, playTrack } = this.props;
     return (
       <SafeAreaView style={ styles.container }>
-      <View>
-          <Text style={{ textAlign: 'center', marginBottom: 5, }}>Home</Text>
-          <Button
-            onPress={ () => {
-              var dom = authorizePocket();
-              return (<WebView source={{ dom }} />);
-            }
-          }
-            title='Login'
-          />
         <View>
-          <SearchBar
-            placeholder="Type Here..."
-            onChangeText={this.updateSearch}
-            value={search}
-            Icon={ null }
-            searchIcon={ null }
+            <Text style={{ textAlign: 'center', marginBottom: 5, }}>Home</Text>
+            <Button
+              onPress={ () => {
+                var dom = authorizePocket();
+                return (<WebView source={{ dom }} />);
+              }
+            }
+              title='Login'
+            />
+          <View>
+            <SearchBar
+              placeholder="Type Here..."
+              onChangeText={this.updateSearch}
+              value={search}
+              Icon={ null }
+              searchIcon={ null }
+            />
+          </View>
+          <View style={ styles.horizontalRule } />
+          <FlatList
+            data={ tracks }
+            renderItem={({ item }) =>
+              <Track track = { item } playTrack = { playTrack }/>
+            }
+            keyExtractor={ item => item.key }
           />
         </View>
-        <View style={ styles.horizontalRule } />
-        <FlatList
-          data={ tracks }
-          renderItem={({ item }) =>
-            <Track track = { item } />
-          }
-          keyExtractor={ item => item.key }
-        />
-      </View>
       </SafeAreaView>
     );
   }
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
 mapStateToProps = (state) => (
   {
     tracks: state.tracks.tracks,
-    activeTrack: state.tracks.activeTrack,
   }
 );
 
@@ -104,6 +103,10 @@ mapDispatchToProps = (dispatch) => (
   ({
     trackListData: () => {
       dispatch(Action.trackListData());
+    },
+
+    playTrack: (trackTitle) => {
+      dispatch(Action.selectedTrack(trackTitle));
     },
   })
 );

@@ -2,7 +2,7 @@ import { actionTypes } from '../actions/actions';
 
 const initialState = {
   tracks: [],
-  activeTrack: {},
+  activeTrack: 'Nothing is Playing',
 };
 
 export default function tracksReducer(state = initialState, action) {
@@ -15,7 +15,7 @@ export default function tracksReducer(state = initialState, action) {
     case actionTypes.SELECTED_TRACK:
       return {
         ...state,
-        activeReminder: action.track,
+        activeTrack: action.track,
       };
     default:
       return state;
