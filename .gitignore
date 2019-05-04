@@ -61,3 +61,6 @@ server/env
 # Pocket Auth Information
 server/config.py
 config.js
+
+# gcloud config file
+server/tts-app-39d7690db953.json
