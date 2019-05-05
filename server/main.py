@@ -33,7 +33,9 @@ def getTracks():
 
 @app.route('/init')
 def initDBWithTracks():
-    session.rollback()
+    ''' currently just doing a straight upload into database.
+    need to change this to actually only update with new entries'''
+    
     tracks = loadArticles()
     for track in tracks:
         new_track = Tracks(
@@ -48,9 +50,10 @@ def initDBWithTracks():
     return ('Check database, tracks should be initialized')
 
 
-@app.route('/audio/mp3')
-def getAudio():
+@app.route('/audio/<int:audio_key>/mp3')
+def getAudio(audio_key):
     '''get track text, convert and store audio, output audio file'''
+
     return (createAudioFile())
 
 if __name__ == '__main__':
