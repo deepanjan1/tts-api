@@ -37,7 +37,7 @@ def loadArticles():
             article_json = articleObjectCreator(articleObject, key)
             articles_json.append(article_json)
 
-    return (jsonify(articles_json))
+    return (articles_json)
 
 ####### Helper functions to not be exported #######
 

@@ -30,3 +30,6 @@ def createAudioFile():
         out.write(response.audio_content)
 
     return('Audio content written to file "output.mp3"')
+
+
+### Helper Functions ###
