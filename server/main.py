@@ -35,7 +35,7 @@ def getTracks():
 def initDBWithTracks():
     ''' currently just doing a straight upload into database.
     need to change this to actually only update with new entries'''
-    
+
     tracks = loadArticles()
     for track in tracks:
         new_track = Tracks(
@@ -54,7 +54,7 @@ def initDBWithTracks():
 def getAudio(audio_key):
     '''get track text, convert and store audio, output audio file'''
 
-    return (createAudioFile())
+    return (str(audio_key))
 
 if __name__ == '__main__':
     app.debug = True
