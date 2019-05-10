@@ -50,11 +50,12 @@ def initDBWithTracks():
     return ('Check database, tracks should be initialized')
 
 
-@app.route('/audio/<int:audio_key>/mp3')
+@app.route('/audio/<string:audio_key>/mp3')
 def getAudio(audio_key):
     '''get track text, convert and store audio, output audio file'''
-
-    return (str(audio_key))
+    track = session.query(Tracks).filter_by(key=audio_key).one()
+    output = createAudioFile(track.text)
+    return (output)
 
 if __name__ == '__main__':
     app.debug = True
