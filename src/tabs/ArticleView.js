@@ -105,8 +105,8 @@ mapDispatchToProps = (dispatch) => (
       dispatch(Action.trackListData());
     },
 
-    playTrack: (trackTitle) => {
-      dispatch(Action.selectedTrack(trackTitle));
+    playTrack: (track) => {
+      dispatch(Action.selectedTrack(track));
     },
   })
 );

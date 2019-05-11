@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 const Track = (props) => (
   <View style={{ marginTop: 10, marginBottom: 10, }}>
     <TouchableHighlight onPress={
-      () => props.playTrack(props.track.title)
+      () => props.playTrack(props.track)
     }>
     <View>
       <View style={{ flexDirection: 'row', marginBottom: 5 }}>

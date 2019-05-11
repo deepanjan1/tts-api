@@ -54,8 +54,7 @@ def initDBWithTracks():
 def getAudio(audio_key):
     '''get track text, convert and store audio, output audio file'''
     track = session.query(Tracks).filter_by(key=audio_key).one()
-    output = createAudioFile(track.text)
-    return (output)
+    return (createAudioFile(track.text, audio_key))
 
 if __name__ == '__main__':
     app.debug = True

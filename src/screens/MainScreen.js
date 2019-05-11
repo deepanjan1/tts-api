@@ -22,7 +22,7 @@ class MainScreen extends React.Component {
     return (
       <SafeAreaView style={ styles.container }>
         <TabNavigator />
-        <PlaybackControl playTrack={ this.props.activeTrack }/>
+        <PlaybackControl track={ this.props.activeTrack }/>
       </SafeAreaView>
     );
   }
