@@ -15,8 +15,25 @@ from bs4 import BeautifulSoup
 import lxml
 import re
 
-# function that loads articles
-def loadArticles():
+# function that loads articles from database
+def loadArticlesDB(tracks):
+    '''takes a DB query object called tracks, and outputs
+    a jsonified version for javascript to loop through'''
+    track_list = []
+    for track in tracks:
+        track_list.append(
+            {
+                'key': track.key,
+                'title': track.title,
+                'text': track.text,
+                'image': track.image,
+                'percent': track.percent
+            }
+        )
+    return (jsonify(track_list))
+
+# function that loads articles from API
+def loadArticlesAPI():
     '''function calls all articles from Pocket; this function is exported'''
     parameters = {
     'access_token': ACCESS_TOKEN,
@@ -63,10 +80,9 @@ def articleObjectCreator(articleObject, key):
         image = requests.get('https://ui-avatars.com/api/', {'name': title}).url
 
     articleText = retrieveText(articleObject['resolved_url'])
-    # print(articleText.get_text())
     article_json = {
     'title': title,
-    'percent': 0.2,
+    'percent': 0,
     'key': key,
     'image': image,
     'text': articleText

@@ -7,12 +7,26 @@ import {
   TouchableHighlight
 } from 'react-native';
 import * as Progress from 'react-native-progress';  // Progress bar
+import Sound from 'react-native-sound';
+
 import PropTypes from 'prop-types';
 
 const PlaybackControl = (props) => (
   <View style = { styles.container }>
     <Text>{ props.track.title }</Text>
-    <TouchableHighlight onPress={ () => console.log('play pressed') }>
+
+    <TouchableHighlight onPress={ () => {
+        Sound.setCategory('Playback');
+        play = new Sound('/366878130.mp3', Sound.MAIN_BUNDLE, (error) => {
+          if (error) {
+            console.log('failed to load the sound', error);
+            return;
+          }
+        });
+        play.play();
+        console.log('we got passed play');
+      }
+    }>
       <View>
         <Image source={require('../assets/play_black.png')} />
       </View>

@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Tracks
 
 # import helper functions
-from load_articles import loadArticles
+from load_articles import loadArticlesAPI, loadArticlesDB
 from tts import createAudioFile
 
 # import config modules
@@ -28,15 +28,16 @@ session = DBSession()
 
 @app.route('/tracks')
 def getTracks():
-    tracks = loadArticles()
-    return (jsonify(tracks))
+    tracks = session.query(Tracks).all()
+    track_list = loadArticlesDB(tracks)
+    return (track_list)
 
 @app.route('/init')
 def initDBWithTracks():
     ''' currently just doing a straight upload into database.
     need to change this to actually only update with new entries'''
-
-    tracks = loadArticles()
+    session.query(Tracks).delete()
+    tracks = loadArticlesAPI()
     for track in tracks:
         new_track = Tracks(
         key = track['key'],

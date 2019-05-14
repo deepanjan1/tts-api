@@ -5560,6 +5560,11 @@ react-native-safe-area-view@^0.13.0:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha512-kSyAt0AeVU6N7ZonfV6dP6iZF8B7Bce+tk3eujXhzBGsLg0VSLnU7uE9VqJF0xdQrHR91ZjGgVMieo/8df9KTA==
 
+react-native-sound@^0.10.12:
+  version "0.10.12"
+  resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.10.12.tgz#f912d6f9d6e9e2b42b391e0226787628d940f01a"
+  integrity sha512-lhvzZ+ekNSHW9s4FjmxxGAQmd7yDT9FnHgJNP824cMyHRrTES/LgHnSOxES/1FWVoaQ8FdfbEHkWd2rN0G/L9A==
+
 react-native-status-bar-height@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.3.1.tgz#b92ce9112c2367290847ac11284d9d84a6330169"
@@ -5571,11 +5576,6 @@ react-native-tab-view@^1.2.0, react-native-tab-view@^1.3.4:
   integrity sha512-iufNROTPr4+Z/IKijlp5faEANiDBWxhpgx9NSCg3esZ+HN5+UtFwB0xkn4XpNRqCvbzeBkgKMRJL3V6kr5NhWg==
   dependencies:
     prop-types "^15.6.1"
-
-react-native-track-player@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/react-native-track-player/-/react-native-track-player-1.1.4.tgz#b8d2b76c57e382d02aa23f9bd70f5b8c1ea42c30"
-  integrity sha512-6+fK+DeFPX+1v+GL+BFnvqC6pDElAps9cgDgVaMRVy/vgJIezWWWQltALBWpstQetUlR0kp27/CZWu6iJUNi9Q==
 
 react-native-vector-icons@^6.4.2:
   version "6.4.2"

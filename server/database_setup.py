@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Numeric, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -14,8 +14,8 @@ class Tracks(Base):
     title = Column(String, nullable=False)
     text = Column(String, nullable=False)
     image = Column(String, nullable=False)
-    percent = Column(String, default=0)
-    audio = Column(String, default='/output.mp3')
+    percent = Column(String, nullable=True, default='0.0')
+    audio = Column(String, nullable=True, default='/366878130.mp3')
 
     @property
     def serialize(self):

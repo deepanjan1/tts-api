@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-navigation'; // ensures title is below notch
 // Main screens loaded in
 import TabNavigator from '../navigators/AppNavigator';
 import PlaybackControl from '../components/PlaybackControl';
+import Sound from 'react-native-sound';
 
 // redux imports
 import * as Action from '../actions/actions';

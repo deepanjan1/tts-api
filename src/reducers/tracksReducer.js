@@ -2,7 +2,14 @@ import { actionTypes } from '../actions/actions';
 
 const initialState = {
   tracks: [],
-  activeTrack: 'Nothing is Playing',
+  activeTrack: {
+    key: '00000000',
+    title: 'No Track Playing',
+    text: 'Article text',
+    image: 'Null',
+    percent: '0.0',
+    audio: 'audio file URL',
+  },
 };
 
 export default function tracksReducer(state = initialState, action) {

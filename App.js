@@ -16,11 +16,6 @@ import logger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 import rootReducer from './src/reducers/rootReducer';
 
-// TabNavigator
-// import TabNavigator from './src/navigators/AppNavigator'
-//
-// import PlaybackControls from './src/components/PlaybackControl'
-
 import MainScreen from './src/screens/MainScreen';
 
 // Creating store for redux
