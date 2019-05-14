@@ -65,9 +65,9 @@
 		F04747FC2288DD61004F577B /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1775E6A350D6472C84957526 /* RNPlaceholder.swift */; };
 		F04747FD2288DD61004F577B /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1775E6A350D6472C84957526 /* RNPlaceholder.swift */; };
 		F04747FE2288DD61004F577B /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1775E6A350D6472C84957526 /* RNPlaceholder.swift */; };
-		F0474870228A5715004F577B /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F047486F228A56FF004F577B /* libRNSound.a */; };
 		F0474874228A5B1A004F577B /* 366878130.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0474873228A5B1A004F577B /* 366878130.mp3 */; };
 		F0695BCD9FDA49A6A03367FA /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8EAC2D68C4B4DBD9877BA /* libAppCenterReactNativeCrashes.a */; };
+		F0BC093C228A676300B257D1 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BC0939228A673100B257D1 /* libRCTVideo.a */; };
 		F7BD9203D3920216CD10DED0 /* libPods-tts_app-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDE8D6C1296C5300FEFA6B2 /* libPods-tts_app-tvOS.a */; };
 		F9BFAFD4A29E4D8882AD737B /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A6A9A7360A43989635F96C /* Octicons.ttf */; };
 		FA3E8EC36B164F4C84C5E28D /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 200FADF5DC4B4591B9F91B14 /* EvilIcons.ttf */; };
@@ -382,12 +382,19 @@
 			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
 			remoteInfo = "RNGestureHandler-tvOS";
 		};
-		F047486E228A56FF004F577B /* PBXContainerItemProxy */ = {
+		F0BC0938228A673100B257D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F047486A228A56FF004F577B /* RNSound.xcodeproj */;
+			containerPortal = F0BC0933228A673100B257D1 /* RCTVideo.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
-			remoteInfo = RNSound;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		F0BC093A228A673100B257D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0BC0933228A673100B257D1 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641E28441F0EEC8500443AF6;
+			remoteInfo = "RCTVideo-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -456,8 +463,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EDF66E7C7D33ABE431276089 /* Pods-tts_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tts_app.debug.xcconfig"; path = "Target Support Files/Pods-tts_app/Pods-tts_app.debug.xcconfig"; sourceTree = "<group>"; };
-		F047486A228A56FF004F577B /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		F0474873228A5B1A004F577B /* 366878130.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 366878130.mp3; path = ../src/components/366878130.mp3; sourceTree = "<group>"; };
+		F0BC0933228A673100B257D1 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		F1A8EAC2D68C4B4DBD9877BA /* libAppCenterReactNativeCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAppCenterReactNativeCrashes.a; sourceTree = "<group>"; };
 		F8228E641E344D83829CF764 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -476,7 +483,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0474870228A5715004F577B /* libRNSound.a in Frameworks */,
+				F0BC093C228A676300B257D1 /* libRCTVideo.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -716,7 +723,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				F047486A228A56FF004F577B /* RNSound.xcodeproj */,
+				F0BC0933228A673100B257D1 /* RCTVideo.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -831,10 +838,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F047486B228A56FF004F577B /* Products */ = {
+		F0BC0934228A673100B257D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F047486F228A56FF004F577B /* libRNSound.a */,
+				F0BC0939228A673100B257D1 /* libRCTVideo.a */,
+				F0BC093B228A673100B257D1 /* libRCTVideo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1008,6 +1016,10 @@
 					ProjectRef = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
 				},
 				{
+					ProductGroup = F0BC0934228A673100B257D1 /* Products */;
+					ProjectRef = F0BC0933228A673100B257D1 /* RCTVideo.xcodeproj */;
+				},
+				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
 				},
@@ -1018,10 +1030,6 @@
 				{
 					ProductGroup = F008D49922655381005F6028 /* Products */;
 					ProjectRef = E9F453FE4E3142C7B1818F27 /* RNGestureHandler.xcodeproj */;
-				},
-				{
-					ProductGroup = F047486B228A56FF004F577B /* Products */;
-					ProjectRef = F047486A228A56FF004F577B /* RNSound.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1329,11 +1337,18 @@
 			remoteRef = F008D4AE22655381005F6028 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F047486F228A56FF004F577B /* libRNSound.a */ = {
+		F0BC0939228A673100B257D1 /* libRCTVideo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libRNSound.a;
-			remoteRef = F047486E228A56FF004F577B /* PBXContainerItemProxy */;
+			path = libRCTVideo.a;
+			remoteRef = F0BC0938228A673100B257D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F0BC093B228A673100B257D1 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = F0BC093A228A673100B257D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1647,6 +1662,7 @@
 					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
+					"$(SRCROOT)/../node_modules/react-native-video/ios/RCTVideo",
 				);
 				INFOPLIST_FILE = tts_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1674,6 +1690,7 @@
 					"$(SRCROOT)/../node_modules/appcenter/ios/AppCenterReactNative",
 					"$(SRCROOT)/../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics",
 					"$(SRCROOT)/../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes",
+					"$(SRCROOT)/../node_modules/react-native-video/ios/RCTVideo",
 				);
 				INFOPLIST_FILE = tts_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

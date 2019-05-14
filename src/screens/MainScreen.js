@@ -8,7 +8,6 @@ import { SafeAreaView } from 'react-navigation'; // ensures title is below notch
 // Main screens loaded in
 import TabNavigator from '../navigators/AppNavigator';
 import PlaybackControl from '../components/PlaybackControl';
-import Sound from 'react-native-sound';
 
 // redux imports
 import * as Action from '../actions/actions';
@@ -23,7 +22,11 @@ class MainScreen extends React.Component {
     return (
       <SafeAreaView style={ styles.container }>
         <TabNavigator />
-        <PlaybackControl track={ this.props.activeTrack }/>
+        <PlaybackControl
+          track={ this.props.activeTrack }
+          paused={ this.props.paused }
+          playTrack={ this.props.playTrack }
+          pauseTrack={ this.props.pauseTrack }/>
       </SafeAreaView>
     );
   }
@@ -43,7 +46,20 @@ const styles = StyleSheet.create({
 mapStateToProps = (state) => (
   {
     activeTrack: state.tracks.activeTrack,
+    paused: state.tracks.paused,
   }
+);
+
+mapDispatchToProps = (dispatch) => (
+  ({
+    pauseTrack: (boolean) => {
+      dispatch(Action.pauseTrack(boolean));
+    },
+
+    playTrack: (boolean) => {
+      dispatch(Action.playTrack(boolean));
+    },
+  })
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

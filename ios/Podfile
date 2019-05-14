@@ -20,6 +20,8 @@ target 'tts_app' do
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'tts_appTests' do
     inherit! :search_paths
     # Pods for testing

@@ -7,37 +7,44 @@ import {
   TouchableHighlight
 } from 'react-native';
 import * as Progress from 'react-native-progress';  // Progress bar
-import Sound from 'react-native-sound';
+
+import Video from 'react-native-video';
 
 import PropTypes from 'prop-types';
 
-const PlaybackControl = (props) => (
-  <View style = { styles.container }>
-    <Text>{ props.track.title }</Text>
+export default class PlaybackControl extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    <TouchableHighlight onPress={ () => {
-        Sound.setCategory('Playback');
-        play = new Sound('/366878130.mp3', Sound.MAIN_BUNDLE, (error) => {
-          if (error) {
-            console.log('failed to load the sound', error);
-            return;
-          }
-        });
-        play.play();
-        console.log('we got passed play');
-      }
-    }>
-      <View>
-        <Image source={require('../assets/play_black.png')} />
-      </View>
-    </TouchableHighlight>
-    <TouchableHighlight onPress={ () => console.log('pause pressed') }>
-      <View>
-        <Image source={require('../assets/pause_black.png')} />
-      </View>
-    </TouchableHighlight>
-  </View>
-);
+  state = {
+    paused: true,
+  };
+
+  render = () => (
+    <View style = { styles.container }>
+      <Text>{ this.props.track.title }</Text>
+      <Video
+        source={{ uri: '366878130.mp3' }}
+        ref={(ref) => {
+          this.player = ref;
+        }}
+
+        paused={ this.state.paused }
+        audioOnly={ true } />
+      <TouchableHighlight onPress={ () => this.setState({ paused: false }) }>
+        <View>
+          <Image source={require('../assets/play_black.png')} />
+        </View>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={ () => this.setState({ paused: true }) }>
+        <View>
+          <Image source={require('../assets/pause_black.png')} />
+        </View>
+      </TouchableHighlight>
+    </View>
+  );
+}
 
 PlaybackControl.propTypes = {
   track: PropTypes.object.isRequired,
@@ -52,5 +59,3 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
-
-export default PlaybackControl;
