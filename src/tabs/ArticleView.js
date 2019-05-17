@@ -29,6 +29,12 @@ class ArticleView extends React.Component {
     this.unsubscribeCurrentUserListener = this.props.trackListData();
   };
 
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.tracks !== this.props.tracks) {
+      console.log(this.props.tracks);
+    }
+  };
+
   // adding a dummy state
   state = {
     search: '',

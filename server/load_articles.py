@@ -56,6 +56,34 @@ def loadArticlesAPI():
 
     return (articles_json)
 
+# find new tracks based on what's in the DB vs. what's the latest 15 in Pocket
+def findNewTracks(tracks_db_keys_collection, tracks_api):
+    '''input tracks from DB and tracks from Pocket,
+    output only the new entries in json format'''
+    tracks_api_keys = []
+    tracks_db_keys = []
+
+    # create a list of keys from Pocket API
+    for track in tracks_api:
+        tracks_api_keys.append(track['key'])
+
+    for key in tracks_db_keys_collection:
+        tracks_db_keys.append(key[0])
+
+    # convert to sets
+    tracks_db_keys = set(tracks_db_keys)
+    tracks_api_keys = set(tracks_api_keys)
+
+    new_tracks_keys = list(tracks_api_keys - tracks_db_keys)
+
+    # pull out the full track objects for new tracks
+    new_tracks = []
+    for new_track_key in new_tracks_keys:
+        for track_api in tracks_api:
+            if track_api['key'] == new_track_key:
+                new_tracks.append(track_api)
+    return (new_tracks)
+
 ####### Helper functions to not be exported #######
 
 def readableArticleValidator(articleObject):

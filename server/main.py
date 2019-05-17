@@ -7,8 +7,9 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Tracks
 
 # import helper functions
-from load_articles import loadArticlesAPI, loadArticlesDB
+from load_articles import loadArticlesAPI, loadArticlesDB, findNewTracks
 from tts import createAudioFile
+from db_helpers import storeNewTracks
 
 # import config modules
 from config import POCKET_KEY, ACCESS_TOKEN
@@ -26,11 +27,30 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-@app.route('/tracks')
+@app.route('/tracks', methods=['GET'])
 def getTracks():
     tracks = session.query(Tracks).all()
     track_list = loadArticlesDB(tracks)
     return (track_list)
+
+@app.route('/newtracks', methods=['GET'])
+def newTracks():
+    '''Calls Pocket API, stores tracks in DB, and
+    outputs tracks that are brand new'''
+    # grabbing latest 15 articles from Pocket
+    tracks_api = loadArticlesAPI()
+    track_db_keys = session.query(Tracks.key).all()
+
+    # outputs new tracks as full objects with all track information
+    new_tracks = findNewTracks(track_db_keys, tracks_api)
+
+    # store new tracks within DB
+    if len(new_tracks) > 0:
+        status = storeNewTracks(new_tracks, session)
+    else:
+        status = 'No New Tracks'
+
+    return (jsonify(status))
 
 @app.route('/init')
 def initDBWithTracks():
@@ -38,16 +58,7 @@ def initDBWithTracks():
     need to change this to actually only update with new entries'''
     session.query(Tracks).delete()
     tracks = loadArticlesAPI()
-    for track in tracks:
-        new_track = Tracks(
-        key = track['key'],
-        title = track['title'],
-        text = track['text'],
-        image = track['image'],
-        percent = track['percent']
-        )
-        session.add(new_track)
-    session.commit()
+    status = storeNewTracks(tracks)
     return ('Check database, tracks should be initialized')
 
 
