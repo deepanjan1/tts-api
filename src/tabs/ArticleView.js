@@ -27,13 +27,26 @@ class ArticleView extends React.Component {
 
   componentDidMount = () => {
     this.unsubscribeCurrentUserListener = this.props.trackListData();
+
+    /* Check for new tracks.  If there are new tracks, update the
+    UI and store in DB */
+
+    fetch('http://localhost:5000/newtracks')
+    .then((response) => response.json())
+    .then((res) => {
+      if (res) {
+        this.props.trackListData();
+        console.log('tracks updated');
+      }
+    });
   };
 
-  componentDidUpdate = (prevProps) => {
-    if (prevProps.tracks !== this.props.tracks) {
-      console.log(this.props.tracks);
-    }
-  };
+  // componentDidUpdate = (prevProps) => {
+  //   if (prevProps.tracks !== this.props.tracks) {
+  //     // updates with new tracks and stores in DB
+  //
+  //   }
+  // };
 
   // adding a dummy state
   state = {

@@ -46,11 +46,10 @@ def newTracks():
 
     # store new tracks within DB
     if len(new_tracks) > 0:
-        status = storeNewTracks(new_tracks, session)
+        storeNewTracks(new_tracks, session)
+        return (jsonify(True))
     else:
-        status = 'No New Tracks'
-
-    return (jsonify(status))
+        return (jsonify(False))
 
 @app.route('/init')
 def initDBWithTracks():
