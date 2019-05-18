@@ -10,6 +10,20 @@ const TabNavigator = createAppContainer(createBottomTabNavigator({
   Home: { screen: ArticleView },
   Playlist: { screen: PlaylistView },
   Profile: { screen: ProfileView },
-}));
+},
+{
+  tabBarOptions: {
+    labelStyle: {
+      fontSize: 12,
+    },
+    tabStyle: {
+      height: 20,
+    },
+    style: {
+      height: 10,
+    },
+  },
+}
+));
 
 export default TabNavigator;

@@ -30,7 +30,6 @@ class ArticleView extends React.Component {
 
     /* Check for new tracks.  If there are new tracks, update the
     UI and store in DB */
-
     fetch('http://localhost:5000/newtracks')
     .then((response) => response.json())
     .then((res) => {
@@ -39,14 +38,8 @@ class ArticleView extends React.Component {
         console.log('tracks updated');
       }
     });
-  };
 
-  // componentDidUpdate = (prevProps) => {
-  //   if (prevProps.tracks !== this.props.tracks) {
-  //     // updates with new tracks and stores in DB
-  //
-  //   }
-  // };
+  };
 
   // adding a dummy state
   state = {
@@ -62,26 +55,28 @@ class ArticleView extends React.Component {
     const { tracks, playTrack } = this.props;
     return (
       <SafeAreaView style={ styles.container }>
-        <View>
-            <Text style={{ textAlign: 'center', marginBottom: 5, }}>Home</Text>
-            <Button
-              onPress={ () => {
-                var dom = authorizePocket();
-                return (<WebView source={{ dom }} />);
-              }
+        <View style={ { flex: 1 } }>
+          <Text style={{ textAlign: 'center', marginBottom: 5, }}>Home</Text>
+          <Button
+            onPress={ () => {
+              var dom = authorizePocket();
+              return (<WebView source={{ dom }} />);
             }
-              title='Login'
-            />
-          <View>
-            <SearchBar
-              placeholder="Type Here..."
-              onChangeText={this.updateSearch}
-              value={search}
-              Icon={ null }
-              searchIcon={ null }
-            />
-          </View>
-          <View style={ styles.horizontalRule } />
+          }
+            title='Login'
+          />
+        </View>
+        <View style={ { flex: 1 } }>
+          <SearchBar
+            placeholder="Type Here..."
+            onChangeText={this.updateSearch}
+            value={search}
+            Icon={ null }
+            searchIcon={ null }
+          />
+        </View>
+        <View style={ styles.horizontalRule } />
+        <View style={{ flex: 8 }}>
           <FlatList
             data={ tracks }
             renderItem={({ item }) =>

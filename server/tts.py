@@ -63,6 +63,9 @@ def googleTTSAPICall(text_segment, segment_number):
     return file_name
 
 def audioCombine(file_name, audio_key):
+    '''if segments are larger than 5000 characters, this function is
+    used to stitch all of the segments together and create one mp3 file'''
+
     combined_file = AudioSegment.from_mp3(file_name[0])
 
     for file in file_name[1:]:
