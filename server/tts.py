@@ -54,7 +54,7 @@ def googleTTSAPICall(text_segment, segment_number):
     # voice parameters and audio file type
     response = client.synthesize_speech(synthesis_input, voice, audio_config)
 
-    file_name = 'output_' + str(segment_number) + '.mp3'
+    file_name = '/audio_files/output_' + str(segment_number) + '.mp3'
 
     # The response's audio_content is binary.
     with open(file_name, 'wb') as out:
@@ -72,7 +72,7 @@ def audioCombine(file_name, audio_key):
         combined_file += AudioSegment.from_mp3(file)
 
     # export file as an mp3 with audio_key as name
-    name = f'{audio_key}.mp3'
+    name = f'/audio_files/{audio_key}.mp3'
     combined_file.export(name, format="mp3")
 
     # delete segment files
