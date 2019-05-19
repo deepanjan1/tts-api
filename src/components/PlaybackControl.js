@@ -21,17 +21,39 @@ export default class PlaybackControl extends React.Component {
     paused: true,
   };
 
+  VideoPlayer = (trackURL) => {
+    console.log(trackURL);
+    if (trackURL == 'None') {
+      return;
+    } else {
+      return (
+        <Video
+
+          source={ { uri: '366878130.mp3' } }
+          ref={(ref) => {
+            this.player = ref;
+          }}
+
+          paused={ this.state.paused }
+          audioOnly={ true } />
+      );
+    }
+  };
+
+  // <Video
+  //   source={{ uri: '366878130.mp3' }}
+  //   ref={(ref) => {
+  //     this.player = ref;
+  //   }}
+  //
+  //   // '../../server/'
+  //   paused={ this.state.paused }
+  //   audioOnly={ true } />
+
   render = () => (
     <View style = { styles.container }>
       <Text>{ this.props.track.title }</Text>
-      <Video
-        source={{ uri: '366878130.mp3' }}
-        ref={(ref) => {
-          this.player = ref;
-        }}
-
-        paused={ this.state.paused }
-        audioOnly={ true } />
+      { this.VideoPlayer(this.props.track.audio) }
       <TouchableHighlight onPress={ () => this.setState({ paused: false }) }>
         <View>
           <Image source={require('../assets/play_black.png')} />

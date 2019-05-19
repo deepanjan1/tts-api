@@ -15,7 +15,7 @@ class Tracks(Base):
     text = Column(String, nullable=False)
     image = Column(String, nullable=False)
     percent = Column(String, nullable=True, default='0.0')
-    audio = Column(String, nullable=True, default='/366878130.mp3')
+    audio = Column(String, default='None')
 
     @property
     def serialize(self):

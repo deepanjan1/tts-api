@@ -14,24 +14,29 @@ def createAudioFile(text, audio_key):
     # and create separate audio files
     filenames = []
 
-    for j in range(n+1):
-        if (j < n):
-            text_segment = text[(j*5000):(j+1)*5000]
-            filenames.append(googleTTSAPICall(text_segment, j))
-        else:
-            text_segment = text[(j*5000):]
-            filenames.append(googleTTSAPICall(text_segment, j))
-
-    # if there are more than one segment, combine all of the audio segments
     if (n > 0):
-        audioCombine(filenames, audio_key)
+        for j in range(n+1):
+            if (j < n):
+                text_segment = text[(j*5000):(j+1)*5000]
+                filenames.append(googleTTSAPICall(text_segment, j))
+            else:
+                text_segment = text[(j*5000):]
+                filenames.append(googleTTSAPICall(text_segment, j))
 
-    output_string = f"Audio content written to file '{audio_key}.mp3'"
-    return(output_string)
+        # if there are more than one segment, combine all of the audio segments
+        name = audioCombine(filenames, audio_key)
+
+    else:
+
+        # if there's just one segment, then create final output mp3
+        name = googleTTSAPICall(text, n, audio_key)
+
+    print(f"Audio content written to file '{audio_key}.mp3'")
+    return(name)
 
 
 ### Helper Functions ###
-def googleTTSAPICall(text_segment, segment_number):
+def googleTTSAPICall(text_segment, segment_number, audio_key = ''):
     ''' takes in a segment of text and the number of the segment,
     and outputs the voice file for that text segment from the Google API.'''
     # Instantiate client
@@ -54,7 +59,10 @@ def googleTTSAPICall(text_segment, segment_number):
     # voice parameters and audio file type
     response = client.synthesize_speech(synthesis_input, voice, audio_config)
 
-    file_name = '/audio_files/output_' + str(segment_number) + '.mp3'
+    if audio_key != '':
+        file_name = f'./audio_files/{audio_key}.mp3'
+    else:
+        file_name = './audio_files/output_' + str(segment_number) + '.mp3'
 
     # The response's audio_content is binary.
     with open(file_name, 'wb') as out:
@@ -72,11 +80,11 @@ def audioCombine(file_name, audio_key):
         combined_file += AudioSegment.from_mp3(file)
 
     # export file as an mp3 with audio_key as name
-    name = f'/audio_files/{audio_key}.mp3'
+    name = f'./audio_files/{audio_key}.mp3'
     combined_file.export(name, format="mp3")
 
     # delete segment files
     for file in file_name:
         os.remove(file)
 
-    return
+    return name

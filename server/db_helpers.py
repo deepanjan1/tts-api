@@ -17,3 +17,12 @@ def storeNewTracks(tracks, session):
     session.commit()
     status = f'{len(tracks)} new tracks added to DB.'
     return (status)
+
+def storeAudioPath(track, key, session):
+    '''Takes in the audio path and DB session as input, stores
+    the audio path and outputs a confirmation'''
+
+    track.audio = 'file://server/audio_file/' + key + '.mp3'
+    session.commit()
+    status = f'{track.audio} is the new path.'
+    return (status)

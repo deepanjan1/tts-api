@@ -27,18 +27,38 @@ class ArticleView extends React.Component {
 
   componentDidMount = () => {
     this.unsubscribeCurrentUserListener = this.props.trackListData();
-
     /* Check for new tracks.  If there are new tracks, update the
     UI and store in DB */
+
     fetch('http://localhost:5000/newtracks')
     .then((response) => response.json())
     .then((res) => {
       if (res) {
         this.props.trackListData();
         console.log('tracks updated');
+      } else {
+        console.log(res);
       }
     });
 
+  };
+
+  componentDidUpdate = (prevProps) => {
+    const { tracks } = this.props;
+
+    if (prevProps.tracks !== tracks) {
+      // cycle through tracks
+      for (var i = 0; i < tracks.length; i++) {
+        console.log(tracks[i]);
+
+        // check to see if tracks have an audio URL
+        if (tracks[i].audio == 'None') {
+          // API is used to convert all text to audio
+          url = 'http://localhost:5000/audio/' + tracks[i].key + '/mp3';
+          fetch(url);
+        }
+      }
+    }
   };
 
   // adding a dummy state

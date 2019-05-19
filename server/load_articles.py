@@ -27,7 +27,8 @@ def loadArticlesDB(tracks):
                 'title': track.title,
                 'text': track.text,
                 'image': track.image,
-                'percent': track.percent
+                'percent': track.percent,
+                'audio': track.audio,
             }
         )
     return (jsonify(track_list))
@@ -38,7 +39,7 @@ def loadArticlesAPI():
     parameters = {
     'access_token': ACCESS_TOKEN,
     'consumer_key': POCKET_KEY,
-    'count': 10,
+    'count': 2,
     }
     url = 'https://getpocket.com/v3/get'
 
@@ -113,7 +114,7 @@ def articleObjectCreator(articleObject, key):
     'percent': 0,
     'key': key,
     'image': image,
-    'text': articleText
+    'text': articleText,
     }
 
     return article_json

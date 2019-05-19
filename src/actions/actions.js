@@ -7,6 +7,8 @@ export const actionTypes = {
 // function to make API call and pull track data (CAN REFACTOR)
 export const trackListData = () => (dispatch) =>
   {
+    console.log('action did load');
+
     fetch('http://localhost:5000/tracks').then(
       (response) => response.json())
       .then((res) => dispatch(loadTracks(res)));

@@ -8,7 +8,7 @@ const initialState = {
     text: 'Article text',
     image: 'Null',
     percent: '0.0',
-    audio: 'audio file URL',
+    audio: 'None',
   },
 };
 
