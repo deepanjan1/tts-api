@@ -1,7 +1,7 @@
 from flask import jsonify
 
-# Account information
-from config import POCKET_KEY, ACCESS_TOKEN
+# # Account information
+# from config import POCKET_KEY, ACCESS_TOKEN
 
 # to read APIs
 import requests
@@ -34,28 +34,28 @@ def loadArticlesDB(tracks):
     return (jsonify(track_list))
 
 # function that loads articles from API
-def loadArticlesAPI():
-    '''function calls all articles from Pocket; this function is exported'''
-    parameters = {
-    'access_token': ACCESS_TOKEN,
-    'consumer_key': POCKET_KEY,
-    'count': 2,
-    }
-    url = 'https://getpocket.com/v3/get'
+# def loadArticlesAPI():
+#     '''function calls all articles from Pocket; this function is exported'''
+#     parameters = {
+#     'access_token': ACCESS_TOKEN,
+#     'consumer_key': POCKET_KEY,
+#     'count': 2,
+#     }
+#     url = 'https://getpocket.com/v3/get'
 
-    response = requests.post(url, data = parameters)
+#     response = requests.post(url, data = parameters)
 
-    articles_json_raw = json.loads(response.text)
+#     articles_json_raw = json.loads(response.text)
 
-    articles_json = []
-    for key in articles_json_raw['list']:
-        articleObject = articles_json_raw['list'][key]
+#     articles_json = []
+#     for key in articles_json_raw['list']:
+#         articleObject = articles_json_raw['list'][key]
 
-        if readableArticleValidator(articleObject):
-            article_json = articleObjectCreator(articleObject, key)
-            articles_json.append(article_json)
+#         if readableArticleValidator(articleObject):
+#             article_json = articleObjectCreator(articleObject, key)
+#             articles_json.append(article_json)
 
-    return (articles_json)
+#     return (articles_json)
 
 # find new tracks based on what's in the DB vs. what's the latest 15 in Pocket
 def findNewTracks(tracks_db_keys_collection, tracks_api):

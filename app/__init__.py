@@ -47,21 +47,21 @@ def create_app(config_name):
     app.secret_key = os.environ.get("FLASK_SECRET_KEY", default=False)
 
     # register blueprints
-    # auth
-    from app.auth import bp as auth_bp
-    app.register_blueprint(auth_bp, url_prefix='/auth')
+    # tracks
+    from app.tracks import bp as tracks_bp
+    app.register_blueprint(tracks_bp, url_prefix='/tracks')
 
-    # bot
-    from app.bot import bp as bot_bp
-    app.register_blueprint(bot_bp, url_prefix='/bot')
+    # # bot
+    # from app.bot import bp as bot_bp
+    # app.register_blueprint(bot_bp, url_prefix='/bot')
 
-    # admin
-    from app.admin import bp as admin_bp
-    app.register_blueprint(admin_bp, url_prefix='/admin')
+    # # admin
+    # from app.admin import bp as admin_bp
+    # app.register_blueprint(admin_bp, url_prefix='/admin')
 
-    # checkup
-    from app.checkup import bp as checkup_bp
-    app.register_blueprint(checkup_bp, url_prefix='/checkup')
+    # # checkup
+    # from app.checkup import bp as checkup_bp
+    # app.register_blueprint(checkup_bp, url_prefix='/checkup')
 
     return app
 
